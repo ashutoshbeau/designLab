@@ -1,0 +1,151 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    th{ 
+        color:#fff;
+            }
+</style>
+
+<h1>Volunteer List: </h1>
+<table class="table table-striped">
+    <tr  class="bg-info">
+        <th>Name</th>
+        <th>Contact Number</th>
+        <th>Email</th>
+        <th>Location</th>
+        <th>Birth Date</th>
+        <th>Action</th>
+        
+    </tr>
+
+    <tbody id="myTable">
+        
+    </tbody>
+</table>
+
+<script>
+	var myArray = [
+    {
+    id: 1,
+    name: "Ram",
+    phone: "74512586987",
+    email: "as@gmail.com",
+    locaton: "noihati",
+    dob: "24.02.1988",
+  },
+  {
+    id: 2,
+    name: "Arjun",
+    phone: "7451258686987",
+    email: "dgas@gmail.com",
+    locaton: "kestopur",
+    dob: "24.02.1988",
+  },
+  {
+    id: 3,
+    name: "Sita",
+    phone: "74512578686987",
+    email: "regras@gmail.com",
+    locaton: "bisorpara",
+    dob: "24.02.1988",
+  },
+  {
+    id: 4,
+    name: "Shiva",
+    phone: "7457612586987",
+    email: "reeras@gmail.com",
+    locaton: "birati",
+    dob: "24.02.1988",
+  },
+  {
+    id: 5,
+    name: "Kali",
+    phone: "745127678586987",
+    email: "wegwas@gmail.com",
+    locaton: "baguiati",
+    dob: "24.02.1988",
+  },
+  {
+    id: 6,
+    name: "Durga",
+    phone: "74517862586987",
+    email: "ergeras@gmail.com",
+    locaton: "bira",
+    dob: "24.02.1988",
+  },
+  {
+    id: 7,
+    name: "Laxmi",
+    phone: "74512786586987",
+    email: "ereras@gmail.com",
+    locaton: "ksks",
+    dob: "24.02.1988",
+  },
+  {
+    id: 8,
+    name: "Karna",
+    phone: "74578612586987",
+    email: "ergeras@gmail.com",
+    locaton: "liluh",
+    dob: "24.02.1988",
+  },
+  {
+    id: 9,
+    name: "amjk",
+    phone: "74512586786987",
+    email: "sfdsas@gmail.com",
+    locaton: "shaktipur",
+    dob: "24.02.1988",
+  },
+  {
+    id: 10,
+    name: "Saurabh",
+    phone: "74517682586987",
+    email: "asfss@gmail.com",
+    locaton: "fsfwfew",
+    dob: "24.02.1988",
+  },
+  {
+    id: 11,
+    name: "qong",
+    phone: "7457812586987",
+    email: "assfs@gmail.com",
+    locaton: "wefewfew",
+    dob: "24.02.1988",
+  },
+  {
+    id: 12,
+    name: "fenial",
+    phone: "7451782586987",
+    email: "asfdh@gmail.com",
+    locaton: "wefwefew",
+    dob: "24.02.1988",
+  },
+	]
+	
+	buildTable(myArray)
+
+
+
+	function buildTable(data){
+		var table = document.getElementById('myTable')
+
+		for (var i = 0; i < data.length; i++){
+			var row = `<tr>
+							<td>${data[i].name}</td>
+							<td>${data[i].phone}</td>
+							<td>${data[i].email}</td>
+                            <td>${data[i].locaton}</td>
+                            <td>${data[i].dob}</td>
+                            <td > <button style="color:white; background-color:#1B5FB9; "> Request Help  </button></td>
+					  </tr>`
+                      
+			table.innerHTML += row
+
+
+		}
+	}
+
+</script>

@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <title>Need Assistance</title>
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+    <body>
+        <div class="topnav">
+            <img src="../img/logo.jpg" style="float: right;" width="50" height="50" alt="logo">
+            <a href="../usernext.html">Back</a>
+        </div>
+        <div class="container1">
+            <h2>New Help</h2>
+        </div>
+        <div class="container2">
+            <form method="GET" action="searchVolunteer.php">
+            <label for="localion"><h3>Choose your location:</h3></label>
+            <select name="location" id="locations">
+                <option value="Liluah">Liluah</option>
+                <option value="Gaya">Gaya</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Bally">Bally</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+            </select>
+            <br><br>
+            <label><h3>Choose Your Help Item:</h3></label><br>
+            <input type="radio" id="item1" name="item" value="Bed">
+            <label for="item1">Bed</label><br>
+            <input type="radio" id="item2" name="item" value="Medicine">
+            <label for="item2">Medicine</label><br>
+            <input type="radio" id="item3" name="item" value="Oxygen">
+            <label for="item3">Oxygen</label><br>
+            <br><br>
+            <label>Quantity:</label>
+            <input type="text" name="Qty" />
+            <br><br>
+            <input style="float: left;" type="submit" class="btn" name="Find" value="Search Volunteer">
+           <!-- <a class="btn" href="searchVolunteer.php" target="_blank">Search Volunteer</a>-->
+        </form>
+        </div>
+ 
+        </body>
+</html>
