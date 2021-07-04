@@ -20,13 +20,14 @@ class LoginManager{
 
             if($check_login_query == 1) {
                 $row = mysqli_fetch_array($check_database_query);
-                $username = $row['id'];
-               
+                $username = $row['fname'];
+                $_SESSION["uname"]=$username;
                 header("Location: usernext.html");
                 exit();
 	        }
             else
             {
+                
             echo"<font color=red><b> Wrong Password or Wrong Email </b></font>";
             }
         }

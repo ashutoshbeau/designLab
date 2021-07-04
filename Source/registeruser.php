@@ -1,5 +1,5 @@
 <?php  
-session_start();
+//session_start();
 $con = mysqli_connect("localhost", "root", "", "esahoyog"); //Connection variable
 //UserManager Class
 class UserManager{

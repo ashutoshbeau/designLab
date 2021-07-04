@@ -20,8 +20,8 @@ class LoginManager{
 
             if($check_login_query == 1) {
                 $row = mysqli_fetch_array($check_database_query);
-                $username = $row['id'];
-               
+                $volname = $row['fname'];
+                $_SESSION['vname']=$volname;
                 header("Location: volunteernext.html");
                 exit();
 	        }
