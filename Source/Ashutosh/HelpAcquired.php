@@ -2,7 +2,7 @@
 session_start();
 include_once('connection.php');
 $uname=$_SESSION['uname'];
-$query="select fname, email, phone, wno, locality, service from volunteer where fname in (select distinct Volname from helpdb where Username='$uname' and VStatus=1 and Volname is not null)";
+$query="select fname, email, phone, wno, locality, service, t1, t2 from volunteer where fname in (select distinct Volname from helpdb where Username='$uname' and VStatus=1 and Volname is not null)";
 //echo ($query);
 $result=mysqli_query($conn, $query);
 //rejected request
@@ -63,6 +63,7 @@ function satisfied(){
                 <th>Whatsapp No.</th>
                 <th>Locality</th>
                 <th>Service</th>
+                <th>Active Time</th>
             </tr>
             </thead>
             <form method="post">
@@ -77,6 +78,7 @@ function satisfied(){
             <td><?php echo $rows['wno']?></td>
             <td><?php echo $rows['locality']?></td>
             <td><?php echo $rows['service']?></td>
+            <td><?php echo $rows['t1'].'-'.$rows['t2']?></td>
         </tr>
         </tbody>
         <?php

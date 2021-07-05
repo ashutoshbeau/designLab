@@ -54,6 +54,7 @@ footer{
   margin-bottom: -27px;
  /* height: 200px;  Should be removed. Only for demonstration */
 }
+
 .container1 img{
     height: 400px;
 	width: 600px;	
@@ -67,6 +68,7 @@ input[type=text], select, textarea {
   border-radius: 4px;
   resize: vertical;
 }
+
 
 label {
   padding: 12px 12px 12px 0;
@@ -102,6 +104,8 @@ input[type=reset] {
   float: left;
   
 }
+
+
 input[type=submit]:hover {
   background-color: #45a049;
 }

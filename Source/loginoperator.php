@@ -14,15 +14,15 @@ class LoginManager{
             $email = str_replace(' ', '', $email); //remove spaeletterces
             $email = ucfirst(strtolower($email)); //Uppercase first 
             $password = strip_tags($_POST['password']); //Remove html tags
-            $password = md5($password); //Get password
-            $check_database_query = mysqli_query($con, "SELECT * FROM user WHERE email='$email' AND password1='$password'");
+            //$password = md5($password); //Get password
+            $check_database_query = mysqli_query($con, "SELECT * FROM operator WHERE email='$email' AND password1='$password'");
             $check_login_query = mysqli_num_rows($check_database_query);
 
             if($check_login_query == 1) {
                 $row = mysqli_fetch_array($check_database_query);
-                $username = $row['fname'];
-                $_SESSION["uname"]=$username;
-                header("Location: usernext.html");
+                $opmail = $row['email'];
+                $_SESSION["omail"]=$opmail;
+                header("Location: operator.php");
                 exit();
 	        }
             else
@@ -43,20 +43,20 @@ $obj->verify();
     <!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>User Login</title>
+        <title>Operator Login</title>
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <div class="topnav">
             <img src="img/logo.jpg" style="float: right ;" width="56" height="50" alt="logo">
             <a href="homepage.html">Home</a>
-            <a href="registeruser.php">Register</a>
+            
         </div>
         <div class="container1">
-            <div><h1>Enter User's Login Credentials.</h1></div>
+            <div><h1>Enter Operator's Login Credentials.</h1></div>
         </div>   
         <div class="container2">
-        <form action="loginuser.php" method="POST">
+        <form action="loginoperator.php" method="POST">
             <div class="row">
                 <div class="col-25">
                     <label for="email">Email </label>

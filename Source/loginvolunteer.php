@@ -52,7 +52,7 @@ $obj->verify();
             <a href="registervolunteer.php">Register</a>
         </div>
         <div class="container1">
-            <div><h1>Enter Login Credentials.</h1></div>
+            <div><h1>Enter Volunteer's Login Credentials.</h1></div>
         </div>   
         <div class="container2">
         <form action="loginvolunteer.php" method="POST">
@@ -60,7 +60,7 @@ $obj->verify();
                 <div class="col-25">
                     <label for="email">Email </label>
                 </div>
-                <div class="col-75">
+                <div class="col-25">
                     <input type="text" id="email" name="email" placeholder="Enter your email address..." required>
                 </div>
             </div>
@@ -70,7 +70,7 @@ $obj->verify();
                     <label for="Password">Password</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="password" name="password" placeholder="Enter your password..." required>
+                    <input type="password" id="password" name="password" style="padding: 12px;width: 310px;height:40px;border: 1px solid #1d2e4a;border-radius: 4px;" placeholder="Enter your password..." required>
                 </div>
             </div>
 
