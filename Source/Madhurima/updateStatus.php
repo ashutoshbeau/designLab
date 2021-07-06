@@ -11,6 +11,7 @@ class StatusManager{
 			$result = mysqli_query($conn, $query);
 		
 			echo "Updated!!";
+			return 1;
 		}
 		
 	}
@@ -22,6 +23,7 @@ class StatusManager{
 			$result = mysqli_query($conn, $query);
 		
 			echo "Updated!!";
+			return 0;
 		}
 	}
 	

@@ -14,7 +14,8 @@ class LoginManager{
             $email = str_replace(' ', '', $email); //remove spaeletterces
             $email = ucfirst(strtolower($email)); //Uppercase first 
             $password = strip_tags($_POST['password']); //Remove html tags
-            //$password = md5($password); //Get password
+            $password = md5($password); //Get password
+           // echo $password;
             $check_database_query = mysqli_query($con, "SELECT * FROM operator WHERE email='$email' AND password1='$password'");
             $check_login_query = mysqli_num_rows($check_database_query);
 

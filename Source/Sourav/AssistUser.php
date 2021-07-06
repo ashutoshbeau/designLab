@@ -3,7 +3,7 @@ session_start();
 include_once('connection.php');
 
 $vname=$_SESSION['vname'];
-$query="select Username, Item, AdditionalDescription, Location from helpdb where Volname='$vname'";
+$query="select Username, Item, AdditionalDescription, Location from helpdb where Volname='$vname' and VStatus=-99";
 $result=mysqli_query($conn, $query);
 ?>
 

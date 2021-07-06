@@ -11,29 +11,13 @@ class ItemManager{
             $location = strip_tags($_POST['location']); //Remove html tags
             $item = strip_tags($_POST['item']); //Remove html tags
             $addDes = strip_tags($_POST['AddDes']); //Remove html tags
-           
-      /*  if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
-            $url = "https://";   
-        else  
-            $url = "http://";   
-  // Append the host(domain name, ip) to the URL.   
-        $url.= $_SERVER['HTTP_HOST'];   
-    
-  // Append the requested resource location to the URL   
-        $url.= $_SERVER['REQUEST_URI'];   
 
-        $url_components = parse_url($url);
-  
-// Use parse_str() function to parse the
-// string passed via URL
-        parse_str($url_components['query'], $params);
-        */
-        $_SESSION["location"]=$location;
-        $_SESSION["item"]=$item;
-        $_SESSION["addDes"]=$addDes;
+            $_SESSION["location"]=$location;
+            $_SESSION["item"]=$item;
+            $_SESSION["addDes"]=$addDes;
         
-        header("Location: searchVolunteer.php");
-        exit();
+            header("Location: searchVolunteer.php");
+            exit();
         }
     }
 }
@@ -69,8 +53,6 @@ $obj->manageItems();
             <select name="location" id="location">
                 <option value="Liluah">Liluah</option>
                 <option value="Gaya">Gaya</option>
-                <option value="Kolkata">Kolkata</option>
-                <option value="Bally">Bally</option>
                 <option value="Bihar">Bihar</option>
                 <option value="Ahmedabad">Ahmedabad</option>
             </select>
