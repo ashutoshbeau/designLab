@@ -13,11 +13,11 @@ $result=mysqli_query($conn, $query);
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
         <title>Give Help</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <div class="topnav">
-            <img src="../img/logo.jpg" style="float: right;" width="50" height="50" alt="logo">
+            <img src="img/logo.jpg" style="float: right;" width="50" height="50" alt="logo">
             <a href="AssistUser.php">Back</a>
         </div>
         <div class="container1">

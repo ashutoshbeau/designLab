@@ -11,7 +11,7 @@ class StatusManager{
 			$result = mysqli_query($conn, $query);
 		
 			echo "Updated!!";
-			return 1;
+			//return 1;
 		}
 		
 	}
@@ -23,7 +23,7 @@ class StatusManager{
 			$result = mysqli_query($conn, $query);
 		
 			echo "Updated!!";
-			return 0;
+			//return 0;
 		}
 	}
 	
@@ -63,13 +63,13 @@ if(array_key_exists('deleteA', $_POST)) {
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         	<title> Volunteer</title>
-        	<link rel="stylesheet" href="../css/style.css">
+        	<link rel="stylesheet" href="css/style.css">
     	</head>
 	<body>
 
 		<div class="topnav">
-       		<a href="../volunteernext.html">Back</a>
-            <img src="../img/logo.jpg" style="float: right ;" width="56" height="50" alt="logo">
+       		<a href="volunteernext.html">Back</a>
+            <img src="img/logo.jpg" style="float: right ;" width="56" height="50" alt="logo">
         </div>
         
             <div class="container2">
@@ -83,7 +83,7 @@ if(array_key_exists('deleteA', $_POST)) {
 				<br>
             </div>
            
-            <img src="../img/helpingHand.jpg"  width="100%" height="100%" alt="motivation">
+            <img src="img/helpingHand.jpg"  width="100%" height="100%" alt="motivation">
       
 
 	</body>

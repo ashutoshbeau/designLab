@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once('connection.php');
+
 $uname=$_SESSION['uname'];
 $query="select fname, email, phone, wno, locality, service, t1, t2 from volunteer where fname in (select distinct Volname from helpdb where Username='$uname' and VStatus=1 and Volname is not null)";
 //echo ($query);
@@ -45,11 +46,11 @@ function satisfied(){
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
         <title>Help Acquired</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <div class="topnav">
-            <img src="../img/logo.jpg" style="float: right;" width="50" height="50" alt="logo">
+            <img src="img/logo.jpg" style="float: right;" width="50" height="50" alt="logo">
             <a href="needAssistance.php">Back</a>
         </div>
         <div class="container1">    

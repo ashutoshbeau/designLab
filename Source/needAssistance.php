@@ -35,12 +35,12 @@ $obj->manageItems();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
         <title>Need Assistance</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <div class="topnav">
-            <img src="../img/logo.jpg" style="float: right;" width="50" height="50" alt="logo">
-            <a href="../usernext.html">Back</a>
+            <img src="img/logo.jpg" style="float: right;" width="50" height="50" alt="logo">
+            <a href="usernext.html">Back</a>
             <a href="HelpAcquired.php">Help Acquired</a>
         </div>
         <div class="container1">

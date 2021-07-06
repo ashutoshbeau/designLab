@@ -14,12 +14,12 @@ $result=mysqli_query($conn, $query);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Assist User</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
       <div class="topnav">
-          <img src="../img/logo.jpg" style="float: right;" width="50" height="50" alt="logo">
-          <a href="../volunteernext.html">Back</a>
+          <img src="img/logo.jpg" style="float: right;" width="50" height="50" alt="logo">
+          <a href="volunteernext.html">Back</a>
           <a href="GiveHelp.php">Give Help</a>
       </div>
       <div class="container1">

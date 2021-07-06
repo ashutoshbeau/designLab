@@ -1,5 +1,5 @@
 <?php
-//include('connection.php');
+
 session_start();
 $conn = mysqli_connect("localhost", "root", "", "esahoyog");
 
@@ -13,11 +13,11 @@ $result=mysqli_query($conn, $query);
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
         <title>Search Volunteer</title>
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <div class="topnav">
-            <img src="../img/logo.jpg" style="float: right;" width="50" height="50" alt="logo">
+            <img src="img/logo.jpg" style="float: right;" width="50" height="50" alt="logo">
             <a href="needAssistance.php">Back</a>
             
           </div>
