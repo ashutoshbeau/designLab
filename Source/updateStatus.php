@@ -37,7 +37,7 @@ class StatusManager{
 			$result = mysqli_query($conn, $query);
 		
 			echo "Updated!!";
-			header("Location: ../homepage.html");
+			header("Location: homepage.html");
         	exit();
 		}
 	}
