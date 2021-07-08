@@ -1,6 +1,6 @@
 <?php
 
-class Operator{
+class OperatorLoginManager{
     public $email;
     public $password;
 
@@ -33,5 +33,4 @@ class Operator{
     }
     
 }
-
 ?>

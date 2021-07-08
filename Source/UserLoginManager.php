@@ -1,6 +1,6 @@
 <?php
 
-class Operator{
+class UserLoginManager{
     public $email;
     public $password;
 
@@ -18,7 +18,7 @@ class Operator{
         $con = mysqli_connect("localhost", "root", "", "esahoyog"); //Connection variable
         $e=$this->email;
         $p=$this->password;
-        $check_database_query = mysqli_query($con, "SELECT * FROM operator WHERE email='$e' AND password1='$p'");
+        $check_database_query = mysqli_query($con, "SELECT * FROM user WHERE email='$e' AND password1='$p'");
         
             $check_login_query = mysqli_num_rows($check_database_query);
 
@@ -31,7 +31,5 @@ class Operator{
             }
         
     }
-    
 }
-
 ?>

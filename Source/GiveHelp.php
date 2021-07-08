@@ -1,9 +1,11 @@
 <?php
 session_start();
-include_once('connection.php');
+include("UserManager.php");
+
+$conn = mysqli_connect("localhost", "root", "", "esahoyog"); //Connection variable
 $vname=$_SESSION['vname'];
-$query="select fname, email, phone, wno, locality, gaddress from user where fname in (select distinct Username from helpdb where Volname='$vname' and VStatus=1)";
-$result=mysqli_query($conn, $query);
+$request= new UserManager();
+$result=$request->showUserContactDetails($vname);
 
 ?>
 

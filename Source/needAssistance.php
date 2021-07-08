@@ -1,28 +1,19 @@
 <?php
 session_start();
-class ItemManager{
-    public $location;
-    public $item;
-    public $addDes;
 
-    public function manageItems(){
+if(isset($_POST['submit'])){
+        $location = strip_tags($_POST['location']); //Remove html tags
+        $item = strip_tags($_POST['item']); //Remove html tags
+        $addDes = strip_tags($_POST['AddDes']); //Remove html tags
 
-        if(isset($_POST['submit'])){
-            $location = strip_tags($_POST['location']); //Remove html tags
-            $item = strip_tags($_POST['item']); //Remove html tags
-            $addDes = strip_tags($_POST['AddDes']); //Remove html tags
-
-            $_SESSION["location"]=$location;
-            $_SESSION["item"]=$item;
-            $_SESSION["addDes"]=$addDes;
+        $_SESSION["location"]=$location;
+        $_SESSION["item"]=$item;
+        $_SESSION["addDes"]=$addDes;
         
-            header("Location: searchVolunteer.php");
-            exit();
-        }
-    }
+        header("Location: searchVolunteer.php");
+        exit();
 }
-$obj = new ItemManager();
-$obj->manageItems();
+
 ?>
 
 

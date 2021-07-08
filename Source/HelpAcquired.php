@@ -1,17 +1,19 @@
 <?php
 session_start();
-include_once('connection.php');
+include("VolunteerManager.php");
+include("OrderManager.php");
 
 $uname=$_SESSION['uname'];
-$query="select fname, email, phone, wno, locality, service, t1, t2 from volunteer where fname in (select distinct Volname from helpdb where Username='$uname' and VStatus=1 and Volname is not null)";
-//echo ($query);
-$result=mysqli_query($conn, $query);
+//accepted request
+$request=new VolunteerManager();
+$result=$request->getVolContactDetails($uname);
+
 //rejected request
-$query2="select Volname, Item, AdditionalDescription, Location from helpdb where Username='$uname' and VStatus=-1 and Volname is not null";
-$result2=mysqli_query($conn, $query2);
+$request2=new OrderManager();
+$result2=$request2->getRejectionDetails($uname);
+
 //info
-$query3="select Location, Item, AdditionalDetails, Helpline from info where Location in (select distinct Location from helpdb where Username='$uname' and UInfo=1)";
-$result3=mysqli_query($conn, $query3);
+$result3=$request2->getHelplineInfo($uname);
 if (!$result3 || !$result2 || !$result) {
     printf("Error: %s\n", mysqli_error($conn));
     exit();
@@ -27,8 +29,8 @@ function satisfied(){
         
         if(isset($_POST['fname'])){
             $vname = strip_tags($_POST['fname']);
-            $query2= "update helpdb set VStatus=0 where Username='$uname' and Volname='$vname'";
-            $result2 = mysqli_query($conn, $query2);
+            $satisfy= new OrderManager();
+            $result2= $satisfy->orderFulfilled($uname, $vname);
             if($result2)
                 echo "Done!!";
             else 
@@ -84,7 +86,7 @@ function satisfied(){
         </tbody>
         <?php
         }
-        $result=mysqli_query($conn, $query);
+        $result=$request->getVolContactDetails($uname);
         if($rows=mysqli_fetch_array($result)){?>
         <tr>
             <td><input type="submit" name="satisfied" value="Satisfied" /></td>

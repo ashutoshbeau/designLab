@@ -1,10 +1,12 @@
 <?php
 session_start();
-include_once('connection.php');
+include("OrderManager.php");
+$conn = mysqli_connect("localhost", "root", "", "esahoyog"); //Connection variable
 
 $vname=$_SESSION['vname'];
-$query="select Username, Item, AdditionalDescription, Location from helpdb where Volname='$vname' and VStatus=-99";
-$result=mysqli_query($conn, $query);
+$request= new OrderManager();
+$result=$request->fetchOrderDetails($vname);
+
 ?>
 
 <!DOCTYPE html>
@@ -40,15 +42,14 @@ $result=mysqli_query($conn, $query);
 
         function acceptRequest() {
             $conn = mysqli_connect("localhost", "root", "", "esahoyog");
+           // include("OrderManager.php");
             if(isset($_POST['Accept'])){
                 if(isset($_POST['uname'])){
                     $uname = strip_tags($_POST['uname']);
                     $vname=$_SESSION['vname'];
-                    $row = mysqli_fetch_array(mysqli_query($conn, "select VStatus from helpdb where Username='$uname' and Volname='$vname'"));
+                    $request= new OrderManager();
 
-                    if($row['VStatus']!=1){
-                      $query2= "UPDATE helpdb SET VStatus=1 WHERE Username='$uname' and Volname='$vname'";
-                      $result2 = mysqli_query($conn, $query2);
+                    if($request->acceptOrder($uname, $vname)){
                       echo "Accepted!";
                     }
                     else 
@@ -61,15 +62,14 @@ $result=mysqli_query($conn, $query);
 
         function deleteRequest() {
           $conn = mysqli_connect("localhost", "root", "", "esahoyog");
+         // include("OrderManager.php");
           if(isset($_POST['Deny'])){
               if(isset($_POST['uname'])){
                   $uname = strip_tags($_POST['uname']);
                   $vname=$_SESSION['vname'];
-                  $row = mysqli_fetch_array(mysqli_query($conn, "select VStatus from helpdb where Username='$uname' and Volname='$vname'"));
-                  if($row['VStatus']!=-1){
-                  $query2= "UPDATE helpdb SET VStatus=-1 WHERE Username='$uname' and Volname='$vname'";
-                  $result2 = mysqli_query($conn, $query2);
-                  echo "Rejected!";
+                  $request= new OrderManager();
+                  if($request->rejectOrder($uname, $vname)){
+                    echo "Rejected!";
                   }
                   else 
                       echo "Already rejected.";

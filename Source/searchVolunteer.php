@@ -1,10 +1,12 @@
 <?php
-
 session_start();
+include("VolunteerManager.php");
+
 $conn = mysqli_connect("localhost", "root", "", "esahoyog");
 
-$query="select fname, locality, service, status_flag from volunteer where locality='".$_SESSION["location"]."'";
-$result=mysqli_query($conn, $query);
+$location=$_SESSION["location"];
+$obj= new VolunteerManager();
+$result=$obj->showVolunteersDetails($location);
 ?>
 
 <html>
@@ -36,15 +38,31 @@ $result=mysqli_query($conn, $query);
 
         function help() {
             $conn = mysqli_connect("localhost", "root", "", "esahoyog");
+            include('Order.php');
+            include('OrderManager.php');
             if(isset($_POST['help'])){
                 $item= $_SESSION["item"];
                 $uname= $_SESSION["uname"];
                 $ades= $_SESSION["addDes"];
                 $loc= $_SESSION["location"];
+                $vname= "-1";
+                $uinfo=0;
+                $vstatus=-99;
                 if(isset($_POST['fname'])){
                     $vname = strip_tags($_POST['fname']);
-                    $query2= "insert into helpdb(Item, Username, Volname, AdditionalDescription, Location) VALUES('$item', '$uname', '$vname', '$ades', '$loc')";
-                    $result2 = mysqli_query($conn, $query2);
+                    $order= new Order();
+                    $order->item=$item;
+                    $order->userName=$uname;
+                    $order->additionalDescription=$ades;
+                    $order->location=$loc;
+                    $order->volunteerName=$vname;
+                    $order->userInfo=$uinfo;
+                    $order->volunteerStatus=$vstatus;
+                    $orderManager= new OrderManager();
+
+                    $result2=$orderManager->insertOrderDetails($order);
+                
+                    
                     if($result2)
                         echo "Request Sent";
                     else 
@@ -57,18 +75,36 @@ $result=mysqli_query($conn, $query);
 
         function info() {
             $conn = mysqli_connect("localhost", "root", "", "esahoyog");
+            include("Order.php");
+            include("OrderManager.php");
             if(isset($_POST['info'])){ 
                 $item= $_SESSION["item"];
                 $uname= $_SESSION["uname"];
                 $ades= $_SESSION["addDes"];
                 $loc= $_SESSION["location"];
-                $query3= "insert into helpdb(Item, Username, UInfo, AdditionalDescription, Location) VALUES('$item', '$uname', 1, '$ades', '$loc')";
-                $result3 = mysqli_query($conn, $query3);
-            if($result3)
-                echo "Info Fetched. Kindly check Help Acquired tab.";
-            else 
-                echo "<p>Info Already Fetched.";
+                $vname= "-1";
+                $uinfo= 1;
+                $vstatus= 0;
+
+                $order= new Order();
+                $order->item=$item;
+                $order->userName=$uname;
+                $order->additionalDescription=$ades;
+                $order->location=$loc;
+                $order->volunteerName=$vname;
+                $order->userInfo=$uinfo;
+                $order->volunteerStatus=$vstatus;
+                $orderManager= new OrderManager();
+
+                $result3=$orderManager->insertOrderDetails($order);
+            
+                
+                if($result3)
+                    echo "Info Fetched. Kindly check Help Acquired tab.";
+                else 
+                    echo "Info Already Fetched.";
             }
+           
         }
     ?>
         <table class="styled" align="center">
@@ -102,7 +138,7 @@ while($rows=mysqli_fetch_array($result)){
 
 <tr>
 <?php
- $result=mysqli_query($conn, $query);
+ $result=$obj->showVolunteersDetails($location);
  if($rows=mysqli_fetch_array($result)) {?>
 <td><input type="submit" name="help" value="Help" /></td>
 <?php } ?>

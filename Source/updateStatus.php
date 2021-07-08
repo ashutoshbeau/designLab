@@ -1,56 +1,20 @@
 <?php
 session_start();
+require("StatusManager.php");
 
-class StatusManager{
-	public $vname;
-	function changeStatusOn(){
-		$conn = mysqli_connect("localhost", "root", "", "esahoyog");
-		if(isset($_POST['aon'])){ 
-			$vname= $_SESSION['vname'];
-			$query= "update volunteer set status_flag=1 where fname='$vname'";
-			$result = mysqli_query($conn, $query);
-		
-			echo "Updated!!";
-			//return 1;
-		}
-		
-	}
-	function changeStatusOff(){
-		$conn = mysqli_connect("localhost", "root", "", "esahoyog");
-		if(isset($_POST['aoff'])){ 
-			$vname= $_SESSION['vname'];
-			$query= "update volunteer set status_flag=0 where fname='$vname'";
-			$result = mysqli_query($conn, $query);
-		
-			echo "Updated!!";
-			//return 0;
-		}
-	}
-	
-	function deleteAccount(){
-		$conn = mysqli_connect("localhost", "root", "", "esahoyog");
-		if(isset($_POST['deleteA'])){ 
-			$vname= $_SESSION['vname'];
-			$pwd="-99";
-			$pwd=md5($pwd);
-			$query= "update volunteer set password1='$pwd' where fname='$vname'";
-			$result = mysqli_query($conn, $query);
-		
-			echo "Updated!!";
-			header("Location: homepage.html");
-        	exit();
-		}
-	}
-}
 $obj = new StatusManager();
+$vname= $_SESSION['vname'];
 if(array_key_exists('aon', $_POST)) {
-	$obj->changeStatusOn();
+	$obj->changeStatusOn($vname);
+	echo "Updated!!";
 }
 if(array_key_exists('aoff', $_POST)) {
-	$obj->changeStatusOff();
+	$obj->changeStatusOff($vname);
+	echo "Updated!!";
 }
 if(array_key_exists('deleteA', $_POST)) {
-	$obj->deleteAccount();
+	$obj->deleteAccount($vname);
+	header("Location: homepage.html");
 }
 
 ?>

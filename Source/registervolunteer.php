@@ -1,137 +1,15 @@
 <?php  
 //session_start();
-$con = mysqli_connect("localhost", "root", "", "esahoyog"); //Connection variable
-class VolunteerManager{
-    public $fname;
-    public $dob;
-    public $digilocker;
-    public $email;
-    public $password1;
-    public $password2;
-    public $phone;
-    public $wno;
-    public $address;
-    public $locality;
-    public $service;
-    public $t1;
-    public $t2;
-    public $status_flag;
-    public function registerVolunteer()
-    {
-        global $con;
-        if(mysqli_connect_errno()) //checking connection
-            {
-                echo "Failed to connect: " . mysqli_connect_errno();
-            }
-    $error_array = array(); //Holds error messages
-    //values we want to insert in user table
-    //fname,dob,digilocker,email,password1,phone,wno,locality,service,t1,t2,status_flag
-    if (isset($_POST['submit']))
-    {
-        $fname = strip_tags($_POST['fname']); //Remove html tags
-    //  $fname = str_replace(' ', '', $fname); //remove spaeletterces
-        $fname = ucfirst(strtolower($fname)); //Uppercase first
-        if(!preg_match("/^[a-zA-Z ]*$/", $fname))
-        {
-            array_push($error_array, "Only alphabets and white spaces allowed for name <br>");
-        } 
+include("Volunteer.php");
+include("VolunteerManager.php");
+$error_array=array();
 
-        $dob = strip_tags($_POST['dob']); //Remove html tags
-
-        $digilocker = strip_tags($_POST['digilocker']); //Remove html tags
-        $digilocker = str_replace(' ', '', $digilocker); //remove spaeletterces
-        $digilocker = ucfirst(strtolower($digilocker)); //Uppercase first 
-
-        $email = strip_tags($_POST['email']); //Remove html tags
-        $email = str_replace(' ', '', $email); //remove spaeletterces
-        $email = ucfirst(strtolower($email)); //Uppercase first 
-        //Check if email is in valid format 
-                if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    
-                    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
-
-                    //Check if email already exists 
-                    $e_check = mysqli_query($con, "SELECT email FROM user WHERE email='$email'");
-
-                    //Count the number of rows returned
-                    $num_rows = mysqli_num_rows($e_check);
-
-                    if($num_rows > 0) {
-                        array_push($error_array, "Email already in use<br>");
-
-                    }
-                }
-                else{
-                    array_push($error_array, "Invalid email format<br>");
-                }
-            
-
-        $password1 = strip_tags($_POST['password']); //Remove html tags
-        
-        $password2 = strip_tags($_POST['repassword']); //Remove html tags
-        if($password1 != $password2) {
-            array_push($error_array,  "Your passwords do not match<br>");
-        }
-        else {
-            if(preg_match('/[^A-Za-z0-9]/', $password1)) {
-                array_push($error_array, "Your password can only contain english characters or numbers<br>");
-            }
-        }
-        $phone = strip_tags($_POST['phone']); //Remove html tags
-        $phone = str_replace(' ', '', $phone); //remove spaeletterces
-        $phone = ucfirst(strtolower($phone)); //Uppercase first 
-        if(!preg_match("/^[0-9]*$/", $phone))
-        {
-            array_push($error_array, "Only numeric allowed for phone no <br>");
-        }
-        if(strlen($phone)!=10)
-        {
-            array_push($error_array, "Phone no should be of 10 digits <br>");
-        }
-
-        $wno = strip_tags($_POST['wno']); //Remove html tags
-        $wno = str_replace(' ', '', $wno); //remove spaeletterces
-        $wno = ucfirst(strtolower($wno)); //Uppercase first 
-        if(!preg_match("/^[0-9]*$/", $wno))
-        {
-            array_push($error_array, "Only numeric allowed for Whatsapp no <br>");
-        }
-        if(strlen($wno)!=10)
-        {
-            array_push($error_array, "Whatsapp no should be of 10 digits <br>");
-        }
-
-        $locality = strip_tags($_POST['locality']); //Remove html tags
-        $locality = str_replace(' ', '', $locality); //remove spaeletterces
-        $locality = ucfirst(strtolower($locality)); //Uppercase first 
-
-        $t1 = strip_tags($_POST['t1']); //Remove html tags
-        $t1 = str_replace(' ', '', $t1); //remove spaeletterces
-        $t1 = ucfirst(strtolower($t1)); //Uppercase first 
-
-        $t2 = strip_tags($_POST['t2']); //Remove html tags
-        $t2 = str_replace(' ', '', $t2); //remove spaeletterces
-        $t2 = ucfirst(strtolower($t2)); //Uppercase first 
-
-        $s = $_POST['service']; 
-        $service="";
-        foreach($s as $i)
-        {
-            $service .=$i.", ";
-        }
-        if(empty($error_array)) {
-            $password1 = md5($password1); //Encrypt password before sending to database
-            //insert into table
-            $status_flag="1";
-            $query = mysqli_query($con, "INSERT INTO volunteer(fname,dob,digilocker,email,password1,phone,wno,locality,service,t1,t2,status_flag) VALUES ('$fname','$dob','$digilocker','$email','$password1','$phone','$wno','$locality','$service','$t1','$t2','$status_flag')");
-
-        }
-    }
-    return $error_array;
-    }
+if (isset($_POST['submit'])){
+    global $error_array;
+    $obj1=new Volunteer($_POST['fname'],$_POST['dob'],$_POST['digilocker'],$_POST['email'],$_POST['password'],$_POST['repassword'],$_POST['phone'],$_POST['wno'],$_POST['locality'],$_POST['service'],$_POST['t1'],$_POST['t2']);
+    $ob2=new VolunteerManager();
+    $error_array=$ob2->registerVolunteer($obj1);
 }
-$obj=new VolunteerManager();
-$error_array=$obj->registerVolunteer();
 ?>
 
 
