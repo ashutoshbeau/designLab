@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("Operator.php");
-$con = mysqli_connect("localhost", "root", "", "esahoyog"); //Connection variable
+$conn = mysqli_connect("localhost", "root", "", "esahoyog"); //Connection variable
 if (isset($_POST['submit']))
 {
     $e=$_POST['email'];
@@ -18,6 +18,7 @@ if (isset($_POST['submit']))
         $check_login_query = mysqli_num_rows($check_database_query);
         $row = mysqli_fetch_array($check_database_query);
         $opmail = $row['email'];
+        $_SESSION['pass'] = $row['password1'];
         $_SESSION["omail"]=$opmail;
         header("Location: OperatorPage.php");
         exit();

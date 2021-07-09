@@ -14,11 +14,12 @@ if (isset($_POST['submit']))
     }
     else{
         
-        $check_database_query = mysqli_query($con, "SELECT * FROM user WHERE email='$e' AND password1='$p'");
-        $check_login_query = mysqli_num_rows($check_database_query);
+        $check_database_query = mysqli_query($con, "SELECT * FROM user WHERE email='$e'");
+        //$check_login_query = mysqli_num_rows($check_database_query);
         $row = mysqli_fetch_array($check_database_query);
         $username = $row['fname'];
         $_SESSION["uname"]=$username;
+       // echo "uname".$username;
         header("Location: usernext.html");
         exit();
     }

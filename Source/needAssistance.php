@@ -5,7 +5,7 @@ if(isset($_POST['submit'])){
         $location = strip_tags($_POST['location']); //Remove html tags
         $item = strip_tags($_POST['item']); //Remove html tags
         $addDes = strip_tags($_POST['AddDes']); //Remove html tags
-
+        
         $_SESSION["location"]=$location;
         $_SESSION["item"]=$item;
         $_SESSION["addDes"]=$addDes;
@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
         header("Location: searchVolunteer.php");
         exit();
 }
-
+//echo "username:".$_SESSION['uname'];
 ?>
 
 

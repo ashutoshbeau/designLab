@@ -1,12 +1,13 @@
 <?php
 session_start();
+include("Operator.php");
 $conn = mysqli_connect("localhost", "root", "", "esahoyog");
-$uname=$_SESSION['uname'];
-$pass="-99";
-$pass=md5($pass);
-$query="select fname, email, phone, wno, locality, service, t1, t2 from volunteer where password1='$pass'";
-//echo ($query);
-$result=mysqli_query($conn, $query);
+
+//$uname=$_SESSION['uname'];
+$omail= $_SESSION['omail'];
+$pass= $_SESSION['pass'];
+$request= new Operator($omail, $pass);
+$result= $request->fetchResignedVolunteers();
 
 if (!$result) {
     printf("Error: %s\n", mysqli_error($conn));
@@ -22,9 +23,8 @@ function delete(){
         
         if(isset($_POST['delete'])){
             $vname = strip_tags($_POST['fname']);
-            $query= "DELETE FROM volunteer WHERE fname='$vname'";
-            $result = mysqli_query($conn, $query);
-            if($result)
+            $result2= $request->deleteVolunteer($vname);
+            if($result2)
                 echo "Deleted!!";
             else 
                 echo "Already Deleted, reload the page to see the change.";
@@ -79,7 +79,7 @@ function delete(){
         </tbody>
         <?php
         }
-        $result=mysqli_query($conn, $query);
+        $result= $request->fetchResignedVolunteers();
         if($rows=mysqli_fetch_array($result)){?>
         <tr>
             <td><input type="submit" name="delete" value="delete" /></td>
