@@ -57,7 +57,7 @@ class UserManager{
     }
     function showUserContactDetails($vname){
         $conn = mysqli_connect("localhost", "root", "", "esahoyog"); //Connection variable
-        $query="select fname, email, phone, wno, locality, gaddress from user where fname in (select distinct Username from helpdb where Volname='$vname' and VStatus=1)";
+        $query="select fname, email, phone, wno, locality, gaddress, t1, t2  from user where fname in (select distinct Username from helpdb where Volname='$vname' and VStatus=1)";
         $result=mysqli_query($conn, $query);
         return $result;
 

@@ -13,11 +13,12 @@ if (isset($_POST['submit']))
         echo"<font color=red><b> Wrong Password or Wrong Email </b></font>";
     }
     else{
-        
+        $p=md5($p);
         $check_database_query = mysqli_query($con, "SELECT * FROM volunteer WHERE email='$e' AND password1='$p'");
         $check_login_query = mysqli_num_rows($check_database_query);
         $row = mysqli_fetch_array($check_database_query);
         $volname = $row['fname'];
+        //echo "vname".$volname;
         $_SESSION["vname"]=$volname;
         header("Location: volunteernext.html");
         exit();

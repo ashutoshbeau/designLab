@@ -45,16 +45,16 @@ class OrderManager{
         else
           return !$result2;
     }
-    public function rejectOrder($vname, $uname){
+    public function rejectOrder($uname, $vname){
         $conn = mysqli_connect("localhost", "root", "", "esahoyog"); //Connection variable
         $row = mysqli_fetch_array(mysqli_query($conn, "select VStatus from helpdb where Username='$uname' and Volname='$vname'"));
-        if($row['VStatus']!=-1){
+        if($row['VStatus']==-99){
             $query2= "UPDATE helpdb SET VStatus=-1 WHERE Username='$uname' and Volname='$vname'";
             $result2 = mysqli_query($conn, $query2);
             return $result2;
         }
-        else
-            return !$result2;      
+        else if($row['VStatus']==-1)
+            return 0;      
     }
 }
 

@@ -34,6 +34,7 @@ $result=$request->showUserContactDetails($vname);
                 <th>Whatsapp No.</th>
                 <th>Locality</th>
                 <th>Address</th>
+                <th>Free Time</th>
             </tr>
             </thead>
         <?php
@@ -47,6 +48,7 @@ $result=$request->showUserContactDetails($vname);
             <td><?php echo $rows['wno'] ?></td>
             <td><?php echo $rows['locality'] ?></td>
             <td><?php echo $rows['gaddress'] ?></td>
+            <td><?php echo $rows['t1']."-".$rows['t2'] ?></td>
         </tr>
         <?php
         }

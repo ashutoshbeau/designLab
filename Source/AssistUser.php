@@ -67,8 +67,11 @@ $result=$request->fetchOrderDetails($vname);
               if(isset($_POST['uname'])){
                   $uname = strip_tags($_POST['uname']);
                   $vname=$_SESSION['vname'];
+                  //echo $uname." and ".$vname;
                   $request= new OrderManager();
-                  if($request->rejectOrder($uname, $vname)){
+                  $result=$request->rejectOrder($uname, $vname);
+                 // echo "Result:".$result;
+                  if($result){
                     echo "Rejected!";
                   }
                   else 

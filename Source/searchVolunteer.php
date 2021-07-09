@@ -66,7 +66,7 @@ $result=$obj->showVolunteersDetails($location);
                     if($result2)
                         echo "Request Sent";
                     else 
-                        echo "Already Sent, have patience;)";
+                        echo "Already Sent, check Help Acquired tab for more details.";
                 }
                 else
                     echo "Kindly choose one of the option before opting for help.";
