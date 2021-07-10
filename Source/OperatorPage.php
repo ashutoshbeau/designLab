@@ -23,6 +23,9 @@ function delete(){
         
         if(isset($_POST['delete'])){
             $vname = strip_tags($_POST['fname']);
+            $omail= $_SESSION['omail'];
+            $pass= $_SESSION['pass'];
+            $request= new Operator($omail, $pass);
             $result2= $request->deleteVolunteer($vname);
             if($result2)
                 echo "Deleted!!";
